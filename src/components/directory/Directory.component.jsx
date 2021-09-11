@@ -12,7 +12,7 @@ class Directory extends React.Component {
           id: "1",
           imageUrl:
             "https://images.unsplash.com/photo-1533055640609-24b498dfd74c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGF0c3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-            linkUrl: 'ht'
+            linkUrl: ''
         },
         {
           title: "jackets",
