@@ -19,4 +19,14 @@
     color: black;
     border: 1px solid black;
   }
+
+  &.isGoogleClass {
+    background-color: rgb(122, 122, 238);
+    color: white;
+
+    &:hover{
+      background-color: rgb(85, 85, 173);
+      border: none;
+    }
+  }
 }
