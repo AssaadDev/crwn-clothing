@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { Homepage } from "./pages/homepage/Homepage.component.jsx";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
@@ -21,7 +21,7 @@ class App extends React.Component {
   unsubFromAuth = null;
 
   componentDidMount() {
-const {setCurrntUser}= this.props;
+    const { setCurrntUser } = this.props;
 
     this.unsubFromAuth = auth.onAuthStateChanged(async (user) => {
       if (user) {
@@ -64,14 +64,18 @@ const {setCurrntUser}= this.props;
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={ShopPage} />
-          <Route exact path="/sign" component={SignInOut} />
+          <Route exact path="/sign" render = {() => this.props.currentUser ? (<Redirect to='/' />)  : (<SignInOut />) } />
         </Switch>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+})
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrntUser: (user) => dispatch(setCurrntUser(user)),
 });
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
